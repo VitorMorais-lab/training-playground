@@ -5,5 +5,21 @@ pipeline {
 		}
 	}
     stages {
+        stage('build') {
+            steps {
+                saveAndPrintDate("Output")
+            }
+        }
+		stage('test') {
+            steps {
+                "sh grep 2020 Output"
+            }
+        }
     }
 }
+
+def saveAndPrintDate(filename = '') {​​
+
+ sh "date > $filename && cat $filename"
+
+ }​​
